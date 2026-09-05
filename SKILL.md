@@ -48,15 +48,19 @@ A complete worked example — the five parts applied to real code, next to the g
 
 ## 4. Failure Modes & Gotchas (The Traps)
 
-- Highlight at least one non-obvious failure mode: race conditions, silent exceptions, memory/token leaks, boundary edge cases, or N+1 queries.
+- Hunt for non-obvious failure modes: race conditions, silent exceptions, memory/token leaks, boundary edge cases, N+1 queries.
 - Explain the technical root cause and how to prevent it.
 - **A failure mode is a scenario, not a category.** "Could have a race condition" is a label. "Two requests arriving within the TTL window both miss the cache and both hit the database" is a finding. Give concrete inputs and the wrong result they produce.
+- **Default to nothing, and do not build a container for it.** If the code is sound, this section is ONE LINE naming what you checked and found clean — no table, no list, no scenario grid. A table with zero rows looks broken, so a table gets rows; that is how invented defects get written. Build the table only after you have a real finding to put in it.
+- **These are not failure modes**, and listing them is the failure this section guards against: a caller who violates the declared type signature; a degenerate-but-correct input (`min === max`); a hardening suggestion ("you could validate this"); a design tradeoff; anything you have to introduce with "the caller might not expect". If your entry ends in "no error" or "acceptable", delete it.
+- A fabricated failure mode is worse than an absent one: the reader acts on it, and every real finding you make loses credibility.
 
 ## 5. Verification Vector (Empirical Test Scenario)
 
 - Provide a minimal test scenario (TDD style, input vs. expected output) that proves the code works or reproduces the edge case.
-- The vector must target the failure mode named in section 4 — a happy-path test that would pass on broken code verifies nothing.
+- The vector must target the failure mode named in section 4 — a happy-path test that would pass on broken code verifies nothing. If section 4 found nothing, target the invariant the code exists to guarantee, at its boundary.
 - Never ask the user to "trust" the explanation; give them the exact assertion to verify it.
+- **Hand-execute every expected value before writing it.** Walk the code with the literal inputs you chose and read off the result; do not infer it from what the function is supposed to do. A wrong assertion is the most expensive thing in this document — the reader runs it, it fails, and they go hunting for a defect that is not there. If you cannot compute an expected value with certainty, choose simpler inputs.
 
 ## Tone & Constraints
 

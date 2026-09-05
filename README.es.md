@@ -81,6 +81,14 @@ preguntar en español sin perder nada.
   tú también: la diferencia entre los dos no está en el largo, está en si el
   lector puede hacer algo con lo que leyó.
 
+## ¿Funciona?
+
+Medido, incluyendo dónde perdió: [EVAL.md](EVAL.md). Resumen — sobre código con
+un defecto real, un juez ciego prefirió las explicaciones de este contrato 5 a 0
+para trabajo de reparación; sobre código **correcto** perdió 2 a 0 y, en un caso,
+inventó un defecto que no existía. Ese hallazgo cambió el contrato, y quedó
+congelado como test de regresión en [`tests/`](tests).
+
 ## De dónde salió
 
 Escribí esta skill para mi propio trabajo y la regalé en un artículo sobre skills

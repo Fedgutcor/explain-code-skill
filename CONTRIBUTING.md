@@ -44,15 +44,37 @@ nobody.
 
 ## Testing a change
 
-There is no test suite — the artifact is prose. What there is, is a way to check
-you didn't make things worse:
+There is a regression gate: [`tests/`](tests). It needs a model — any
+OpenAI-compatible endpoint, including a local Ollama — and it is skipped unless
+you ask for it:
 
-1. Pick three snippets, at least one with a real bug and one that is genuinely
-   trivial.
-2. Get an explanation with the current `SKILL.md` and with your edited one.
-3. Ask: did the bug get named more precisely? Did the trivial snippet get
-   *longer* without getting clearer?
+```bash
+pip install pytest
+export EXPLAIN_EVAL_ENABLED=1
+export EXPLAIN_EVAL_BASE_URL=http://localhost:11434/v1
+export EXPLAIN_EVAL_MODEL=gpt-oss:20b
+export EXPLAIN_JUDGE_MODEL=<a different model, if you have one>
+pytest tests -v
+```
 
-The second question is the one people skip. A contract change that improves hard
-cases while padding easy ones is usually a net loss, because easy cases are most
-of them.
+Three checks, and the first is the one that matters:
+
+- `test_does_not_invent_defects` — on **correct** code, the contract must not
+  manufacture a failure mode. This is a real defect this contract had, frozen as
+  a test: section 4 used to demand "at least one" failure mode, and on a correct
+  `clamp` the assistant filled the quota by asserting that `clamp(NaN, -5, -10)`
+  "violates the contract" by returning `-5`. It does not. Run this before
+  touching section 4.
+- `test_still_finds_real_defects` — the guard against overcorrecting: a section
+  allowed to say "nothing here" could learn to always say it.
+- `test_baseline_is_clean_on_controls` — tests the probe, not the skill. If a
+  plain assistant also calls the control snippet buggy, the snippet is at fault
+  and the invention test proves nothing.
+
+The measurement that produced these cases, including where the contract lost, is
+in [EVAL.md](EVAL.md).
+
+Two caveats. A language model is not deterministic, so a single flip is not a
+regression — rerun before concluding. And these tests check that a change did not
+break what is already known to matter; they cannot tell you a new rule is worth
+its cost. That still needs the three questions above.

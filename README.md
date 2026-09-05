@@ -68,6 +68,14 @@ contract does not depend on Claude Code.
   by the assistant on demand, and worth reading yourself: the difference between
   the two is not length, it is whether a reader could act on it.
 
+## Does it work?
+
+Measured, including where it lost: [EVAL.md](EVAL.md). Short version — on code
+with a real defect a blind judge preferred this contract's explanations 5–0 for
+repair work; on *correct* code it lost 2–0 and, in one case, invented a defect
+that was not there. That finding changed the contract, and is now frozen as a
+regression test in [`tests/`](tests).
+
 ## Where it came from
 
 I wrote this for my own work and gave it away in an article on skills that are
