@@ -1,3 +1,5 @@
+> 🇪🇸 [Versión en español](README.es.md)
+
 # explain-code
 
 An [Agent Skill](https://code.claude.com/docs/en/skills) that forces an AI
