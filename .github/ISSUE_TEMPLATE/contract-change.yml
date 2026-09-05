@@ -1,0 +1,30 @@
+name: Contract change
+description: Propose adding, removing or rewording a rule in SKILL.md
+labels: ["contract"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        `SKILL.md` is short on purpose. A new rule has to replace a failure that
+        actually happens, not one that theoretically could.
+  - type: textarea
+    id: failure
+    attributes:
+      label: The failure
+      description: A real explanation an assistant produced that the current contract permits and shouldn't. Paste it.
+    validations:
+      required: true
+  - type: textarea
+    id: rule
+    attributes:
+      label: The rule
+      description: The smallest wording that would have prevented it.
+    validations:
+      required: true
+  - type: textarea
+    id: cost
+    attributes:
+      label: What it costs
+      description: Which explanations get longer or worse because of this rule? Everything has a cost; naming it is what makes the tradeoff reviewable.
+    validations:
+      required: true

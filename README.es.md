@@ -81,6 +81,20 @@ preguntar en español sin perder nada.
   tú también: la diferencia entre los dos no está en el largo, está en si el
   lector puede hacer algo con lo que leyó.
 
+## De dónde salió
+
+Escribí esta skill para mi propio trabajo y la regalé en un artículo sobre skills
+que vale la pena instalar: [Skills seguras para asistentes de
+IA](https://ultragresion.com/es/blog/skills-seguras-para-asistentes-de-ia/).
+
+El repositorio existe por un defecto de ese artículo. Publicaba la skill como un
+bloque para copiar y pegar, traducido al español — y la traducción había perdido
+en silencio los disparadores del campo `description`, que es exactamente el
+mecanismo que hace que una skill se active sola. El regalo no funcionaba como la
+copia que yo uso. Una sola fuente, en un solo lugar, es el arreglo.
+
+Contribuciones y forks: [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Licencia
 
 MIT. Úsala, bifúrcala, cambia el contrato para que se ajuste a cómo explica las

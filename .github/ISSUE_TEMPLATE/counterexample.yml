@@ -1,0 +1,33 @@
+name: Counterexample
+description: Code where following the contract produces a WORSE explanation than a plain answer
+labels: ["counterexample"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        These are more useful than new rules. The contract leans on the edge of
+        ceremony and needs evidence of where it tips over.
+  - type: textarea
+    id: code
+    attributes:
+      label: The code
+    validations:
+      required: true
+  - type: textarea
+    id: with_skill
+    attributes:
+      label: Explanation WITH the skill
+    validations:
+      required: true
+  - type: textarea
+    id: without_skill
+    attributes:
+      label: Explanation WITHOUT it
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why the second one is better
+    validations:
+      required: true

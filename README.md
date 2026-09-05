@@ -68,6 +68,21 @@ contract does not depend on Claude Code.
   by the assistant on demand, and worth reading yourself: the difference between
   the two is not length, it is whether a reader could act on it.
 
+## Where it came from
+
+I wrote this for my own work and gave it away in an article on skills that are
+worth installing: [Skills seguras para asistentes de
+IA](https://ultragresion.com/es/blog/skills-seguras-para-asistentes-de-ia/)
+(Spanish · [English](https://ultragresion.com/en/blog/skills-seguras-para-asistentes-de-ia/)).
+
+The repository exists because of a defect in that article. It published the skill
+as a block to copy and paste, translated into Spanish — and the translation had
+silently dropped the triggers from the `description` field, which is exactly the
+mechanism that makes a skill auto-activate. The gift did not work the way the
+copy I run does. One source, in one place, is the fix.
+
+Contributions and forks: [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## License
 
 MIT. Use it, fork it, change the contract to fit how your team explains things.
