@@ -46,6 +46,10 @@ Or globally, for every project:
 git clone https://github.com/Fedgutcor/explain-code-skill ~/.claude/skills/explain-code
 ```
 
+Both leave a `.git/` inside the skill folder (~124 KB). If you would rather keep
+it clean, download the two files instead — or clone into `~/projects` and symlink
+`~/.claude/skills/explain-code` to it, which is how I run it myself.
+
 Then just ask normally — `cómo funciona esto`, `explain code`, `walk me through
 this`. The `description` field carries the triggers, so the assistant loads the
 skill on its own. You can also invoke it explicitly with `/explain-code`.
